@@ -25,11 +25,11 @@ if (cmd.includes('current') && (argv.m || argv.month)) output = datetime.getUTCM
 if (cmd.includes('current') && (argv.y || argv.year)) output = datetime.getUTCFullYear();
 if (cmd.includes('current') && (argv.d || argv.date)) output = datetime.getUTCDate();
 
-if (cmd.includes('add') && (Number.isInteger((argv.d || argv.date))) && (argv.d > 0 || argv.date > 0)) output = new Date(datetime.setDate(datetime.getUTCDate() + (argv.d || argv.date)));
+if (cmd.includes('add') && (Number.isInteger((argv.d || argv.date))) && (argv.d > 0 || argv.date > 0)) output = new Date(datetime.setUTCDate(datetime.getUTCDate() + (argv.d || argv.date)));
 if (cmd.includes('add') && (Number.isInteger((argv.m || argv.month))) && (argv.m > 0 || argv.month > 0)) output = new Date(datetime.setUTCMonth(datetime.getUTCMonth() + (argv.m || argv.month)));
 if (cmd.includes('add') && (Number.isInteger((argv.y || argv.year))) && (argv.y > 0 || argv.year > 0)) output = new Date(datetime.setUTCFullYear(datetime.getUTCFullYear() + (argv.y || argv.year)));
 
-if (cmd.includes('sub') && (Number.isInteger((argv.d || argv.date))) && (argv.d > 0 || argv.date > 0)) output = new Date(datetime.setDate(datetime.getUTCDate() - (argv.d || argv.date)));
+if (cmd.includes('sub') && (Number.isInteger((argv.d || argv.date))) && (argv.d > 0 || argv.date > 0)) output = new Date(datetime.setUTCDate(datetime.getUTCDate() - (argv.d || argv.date)));
 if (cmd.includes('sub') && (Number.isInteger((argv.m || argv.month))) && (argv.m > 0 || argv.month > 0)) output = new Date(datetime.setUTCMonth(datetime.getUTCMonth() - (argv.m || argv.month)));
 if (cmd.includes('sub') && (Number.isInteger((argv.y || argv.year))) && (argv.y > 0 || argv.year > 0)) output = new Date(datetime.setUTCFullYear(datetime.getUTCFullYear() - (argv.y || argv.year)));
 
