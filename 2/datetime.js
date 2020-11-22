@@ -18,19 +18,34 @@ const argv = yargs(hideBin(process.argv)).argv;
 const datetime = new Date();
 const cmd = argv['_'];
 
-let output = "Используйте верные флаги";
+let output = "Используйте верные флаги", option = cmd[0];
 
-if (cmd.includes('current') && Object.keys(argv).length == 2) output = datetime;
-if (cmd.includes('current') && (argv.m || argv.month)) output = datetime.getUTCMonth() + 1;
-if (cmd.includes('current') && (argv.y || argv.year)) output = datetime.getUTCFullYear();
-if (cmd.includes('current') && (argv.d || argv.date)) output = datetime.getUTCDate();
+switch(option) {
+    case 'current':
+        (Object.keys(argv).length == 2) && (output = datetime);
+        (argv.m || argv.month) && (output = datetime.getUTCMonth() + 1);
+        (argv.y || argv.year) && (output = datetime.getUTCFullYear());
+        (argv.d || argv.date) && (output = datetime.getUTCDate());
+        break;
+  
+    case 'add':
+        (Number.isInteger((argv.d || argv.date))) && (argv.d > 0 || argv.date > 0) && 
+            (output = new Date(datetime.setUTCDate(datetime.getUTCDate() + (argv.d || argv.date))));
+        (Number.isInteger((argv.m || argv.month))) && (argv.m > 0 || argv.month > 0) && 
+            (output = new Date(datetime.setUTCMonth(datetime.getUTCMonth() + (argv.m || argv.month))));
+        (Number.isInteger((argv.y || argv.year))) && (argv.y > 0 || argv.year > 0) &&
+            (output = new Date(datetime.setUTCFullYear(datetime.getUTCFullYear() + (argv.y || argv.year))));
+        break;
 
-if (cmd.includes('add') && (Number.isInteger((argv.d || argv.date))) && (argv.d > 0 || argv.date > 0)) output = new Date(datetime.setUTCDate(datetime.getUTCDate() + (argv.d || argv.date)));
-if (cmd.includes('add') && (Number.isInteger((argv.m || argv.month))) && (argv.m > 0 || argv.month > 0)) output = new Date(datetime.setUTCMonth(datetime.getUTCMonth() + (argv.m || argv.month)));
-if (cmd.includes('add') && (Number.isInteger((argv.y || argv.year))) && (argv.y > 0 || argv.year > 0)) output = new Date(datetime.setUTCFullYear(datetime.getUTCFullYear() + (argv.y || argv.year)));
+    case 'sub':
+        (Number.isInteger((argv.d || argv.date))) && (argv.d > 0 || argv.date > 0) && 
+            (output = new Date(datetime.setUTCDate(datetime.getUTCDate() - (argv.d || argv.date))));
+        (Number.isInteger((argv.m || argv.month))) && (argv.m > 0 || argv.month > 0) &&
+            (output = new Date(datetime.setUTCMonth(datetime.getUTCMonth() - (argv.m || argv.month))));
+        (Number.isInteger((argv.y || argv.year))) && (argv.y > 0 || argv.year > 0) &&
+            (output = new Date(datetime.setUTCFullYear(datetime.getUTCFullYear() - (argv.y || argv.year))));
+        break;
 
-if (cmd.includes('sub') && (Number.isInteger((argv.d || argv.date))) && (argv.d > 0 || argv.date > 0)) output = new Date(datetime.setUTCDate(datetime.getUTCDate() - (argv.d || argv.date)));
-if (cmd.includes('sub') && (Number.isInteger((argv.m || argv.month))) && (argv.m > 0 || argv.month > 0)) output = new Date(datetime.setUTCMonth(datetime.getUTCMonth() - (argv.m || argv.month)));
-if (cmd.includes('sub') && (Number.isInteger((argv.y || argv.year))) && (argv.y > 0 || argv.year > 0)) output = new Date(datetime.setUTCFullYear(datetime.getUTCFullYear() - (argv.y || argv.year)));
+  }
 
 console.log(output);
