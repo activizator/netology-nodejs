@@ -1,0 +1,15 @@
+{
+  "name": "guess-the-number-game",
+  "version": "1.0.0",
+  "description": "guess the random number between 0 and 100",
+  "main": "guess-the-number-game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/activizator/netology-nodejs/blob/master/3/guess-the-number-game.js"
+  },
+  "author": "activizator",
+  "license": "UNLICENSED"
+}
