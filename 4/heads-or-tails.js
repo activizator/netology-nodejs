@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
+const readline = require('readline');
+const input = readline.createInterface(process.stdin);
+
 class Coin {
     constructor() {
         this.side = this.#dropIt();
@@ -15,12 +18,9 @@ class Coin {
     }
 }
 
-const readline = require('readline');
-const input = readline.createInterface(process.stdin);
-
 function guessTheNumber(value) {
     const coin = new Coin();
-    let c = parseInt(value);
+    const c = parseInt(value);
     if ( c === 1 || c === 2 ) {
         if (c == coin.side) {
             console.log("Победа!");
