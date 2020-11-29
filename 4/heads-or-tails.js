@@ -40,11 +40,11 @@ function syncFileWrite(filename, data) {
 }
 
 function syncFileRead(filename) {
-    let result = fs.readFileSync(filename, 'utf8');
+    const result = fs.readFileSync(filename, 'utf8');
     return result;
 }
 
-let logFN = process.argv[2];
+const logFN = process.argv[2];
 let stat;
 if (logFN) {
     console.log("Логгирование игры ведется в файл: " + logFN);
