@@ -23,7 +23,7 @@ function guessTheNumber(value) {
     const coin = new Coin();
     const c = parseInt(value);
     if ( c === 1 || c === 2 ) {
-        if (c == coin.side) {
+        if (c === coin.side) {
             console.log("Победа!");
             return "win";
         } else {
